@@ -1,0 +1,61 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="Dialog.Landscape" parent="@style/Theme.AppCompat.Light.Dialog">
+        <item name="windowMinWidthMajor">50%</item>
+        <item name="windowMinWidthMinor">50%</item>
+    </style>
+
+    <style name="Dialog.Portrait" parent="@style/Theme.AppCompat.Light.Dialog">
+        <item name="windowMinWidthMajor">80%</item>
+        <item name="windowMinWidthMinor">80%</item>
+    </style>
+
+    <style name="ProgressDialog" parent="@style/Theme.AppCompat.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@drawable/ic_loading</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:textColor">@color/color_aaa_gray</item>
+        <item name="android:backgroundDimEnabled">true</item>
+    </style>
+
+    <declare-styleable name="LAViewPager">
+        <attr name="scrollable" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="LoadingRecyclerView">
+        <attr name="clipChildren" format="boolean"/>
+        <attr name="clipToPadding" format="boolean"/>
+        <attr name="paddingTop" format="dimension"/>
+        <attr name="paddingBottom" format="dimension"/>
+    </declare-styleable>
+
+
+    <declare-styleable name="LAImageView">
+        <attr name="ratio" format="float" />
+        <attr name="radius" format="dimension" />
+        <attr name="topLeftRadius" format="dimension" />
+        <attr name="topRightRadius" format="dimension" />
+        <attr name="bottomLeftRadius" format="dimension" />
+        <attr name="bottomRightRadius" format="dimension" />
+    </declare-styleable>
+
+
+    <declare-styleable name="SmartViewPager">
+        <attr name="need_indicator" format="boolean" />
+        <attr name="auto_scroll" format="boolean" />
+        <attr name="circulate" format="boolean" />
+        <attr name="scroll_delay" format="integer" />
+    </declare-styleable>
+
+</resources>

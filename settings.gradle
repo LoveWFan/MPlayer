@@ -1,2 +1,4 @@
+include ':labase'
+include ':file'
 include ':app'
 rootProject.name = "MPlayer"

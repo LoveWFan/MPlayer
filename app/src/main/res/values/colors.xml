@@ -3,4 +3,14 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+
+    <color name="bg">#F6F6F6</color>
+    <color name="textColor">#4D4D4D</color>
+    <color name="tra">#00000000</color>
+    <color name="black_semi_transparent">#B2000000</color>
+    <color name="white">#FFFFFF</color>
+    <color name="white44">#44FFFFFF</color>
+    <color name="fab_pressed_main">#3EBBDB</color>
+    <color name="fab_pressed_son">#1C8D87</color>
+    <color name="ripple_color">#A0A0A0</color>
 </resources>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/loading_footer_reload"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/padding15">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="哎呀，失去网络了......"
+        android:textSize="@dimen/textsize17" />
+
+    <TextView
+        android:id="@+id/cview_loading_footer_reload_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/cview_loading_footer_reload_no_network"
+        android:text="重新加载"
+        android:textColor="@color/color_fb3_orange"
+        android:textSize="@dimen/textsize17" />
+
+    <ImageView
+        android:id="@+id/cview_loading_footer_reload_no_network"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ic_rv_no_net_work" />
+</RelativeLayout>
