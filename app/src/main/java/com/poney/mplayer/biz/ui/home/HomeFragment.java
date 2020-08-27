@@ -69,11 +69,17 @@ public class HomeFragment extends Fragment {
                 msgError.setVisibility(View.VISIBLE);
             }
         });
+        homeViewModel.getRefreshStatus().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean refresh) {
+                refreshLayout.setRefreshing(refresh);
+            }
+        });
+
         // 下拉刷新监听
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                refreshLayout.setRefreshing(false);
                 refresh();
             }
         });

@@ -1,9 +1,11 @@
 package com.poney.mplayer.biz.ui.home.model;
 
+import java.io.Serializable;
+
 /**
  * 视频类
  */
-public class VideoBean {
+public class VideoBean implements Serializable {
 
     public String name;
     public String path;

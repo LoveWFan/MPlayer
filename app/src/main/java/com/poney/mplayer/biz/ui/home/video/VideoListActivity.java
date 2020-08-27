@@ -38,6 +38,8 @@ public class VideoListActivity extends AppCompatActivity implements LifecycleOwn
     RecyclerView videoListView;
     @BindView(R.id.progress_bar)
     ProgressBar progressBar;
+    @BindView(R.id.iv_play_all)
+    ImageView ivPlayAll;
     private VideoViewModel videoViewModel;
     private VideoListAdapter mAdapter;
     private String path;
@@ -62,7 +64,7 @@ public class VideoListActivity extends AppCompatActivity implements LifecycleOwn
         mAdapter.setListener(new BaseRVAdapter.Listener() {
             @Override
             public void onItemClicked(int position) {
-
+                VideoActivity.intentTo(VideoListActivity.this, path, position);
             }
         });
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);

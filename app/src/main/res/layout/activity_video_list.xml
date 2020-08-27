@@ -5,16 +5,36 @@
     android:background="@color/bg"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvFilePath"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:background="@color/colorPrimary"
-        android:maxLines="2"
-        android:padding="16dp"
-        android:text="download/files/mp4"
-        android:textColor="@color/white"
-        android:textSize="20sp" />
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/tvFilePath"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:maxLines="2"
+            android:text="download/files/mp4"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/iv_play_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="32dp"
+            android:src="@drawable/ic_play" />
+
+    </LinearLayout>
+
 
     <View
         android:layout_width="match_parent"

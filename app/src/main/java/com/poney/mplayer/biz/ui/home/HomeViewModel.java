@@ -3,6 +3,7 @@ package com.poney.mplayer.biz.ui.home;
 import android.os.Environment;
 
 import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -23,16 +24,21 @@ import io.reactivex.functions.Predicate;
 import io.reactivex.schedulers.Schedulers;
 
 public class HomeViewModel extends ViewModel {
+    private MutableLiveData<Boolean> mRefreshStatus;
     private MutableLiveData<String> mErrorMsg;
     private MutableLiveData<List<FileBean>> mFileBeanList;
     private List<FileBean> fileBeanList = new ArrayList<>();
     private List<File> fileList = new ArrayList<>();
-    private boolean inited;
 
     public HomeViewModel() {
+        mRefreshStatus = new MutableLiveData<>();
         mErrorMsg = new MutableLiveData<>();
         mFileBeanList = new MutableLiveData<>();
         mFileBeanList.setValue(fileBeanList);
+    }
+
+    public MutableLiveData<Boolean> getRefreshStatus() {
+        return mRefreshStatus;
     }
 
     public MutableLiveData<List<FileBean>> getFileList() {
@@ -45,6 +51,7 @@ public class HomeViewModel extends ViewModel {
 
     public void getStorageFiles(FragmentActivity activity) {
         fileBeanList.clear();
+        fileList.clear();
         File rootFile = Environment.getExternalStorageDirectory();
         if (rootFile != null) {
             Disposable disposable = Observable.just(rootFile)
@@ -101,10 +108,8 @@ public class HomeViewModel extends ViewModel {
                 }, throwable -> {
                     mErrorMsg.setValue(throwable.getMessage());
                 }, () -> {
-                    if (!inited) {
-                        inited = true;
-                        mFileBeanList.postValue(fileBeanList);
-                    }
+                    mFileBeanList.postValue(fileBeanList);
+                    mRefreshStatus.postValue(false);
                 });
     }
 
@@ -119,4 +124,6 @@ public class HomeViewModel extends ViewModel {
                     .filter((Predicate<? super File>) file -> f.exists() && f.canRead() && FileUtils.isVideo(f));
         }
     }
+
+
 }
