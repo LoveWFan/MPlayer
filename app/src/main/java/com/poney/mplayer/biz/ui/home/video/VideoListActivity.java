@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.poney.media.MediaDemoActivity;
 import com.poney.mplayer.R;
 import com.poney.mplayer.biz.ui.home.model.VideoBean;
 
@@ -64,13 +65,26 @@ public class VideoListActivity extends AppCompatActivity implements LifecycleOwn
         mAdapter.setListener(new BaseRVAdapter.Listener() {
             @Override
             public void onItemClicked(int position) {
-                VideoActivity.intentTo(VideoListActivity.this, path, position);
+                handleVideoItemClick(position, mAdapter.getItemData(position));
             }
         });
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         videoListView.setLayoutManager(layoutManager);
         videoListView.setItemAnimator(new DefaultItemAnimator());
         videoListView.setAdapter(mAdapter);
+    }
+
+    private void handleVideoItemClick(int position, VideoBean itemData) {
+        if (getVideoItemSuffix(itemData.path).equals("avi")) {
+            MediaDemoActivity.intentTo(VideoListActivity.this, itemData.path);
+        } else {
+            VideoActivity.intentTo(VideoListActivity.this, path, position);
+        }
+
+    }
+
+    private String getVideoItemSuffix(String path) {
+        return path.substring(path.lastIndexOf(".") + 1);
     }
 
     private void initData() {

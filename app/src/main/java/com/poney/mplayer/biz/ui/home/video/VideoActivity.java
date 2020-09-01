@@ -43,7 +43,7 @@ public class VideoActivity extends AppCompatActivity {
     private String rootPath;
     private int curPosition;
 
-    public static Intent newIntent(Context context, String rootPath, int position) {
+    private static Intent newIntent(Context context, String rootPath, int position) {
         Intent intent = new Intent(context, VideoActivity.class);
         intent.putExtra("rootPath", rootPath);
         intent.putExtra("position", position);
