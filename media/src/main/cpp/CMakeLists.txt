@@ -91,11 +91,16 @@ add_library( # Sets the name of the library.
         #Video解码
         ${CMAKE_SOURCE_DIR}/media/decoder/video/v_decoder.h
         ${CMAKE_SOURCE_DIR}/media/decoder/video/v_decoder.cpp
-
+        #Audio解码
+        ${CMAKE_SOURCE_DIR}/media/decoder/audio/a_decoder.h
+        ${CMAKE_SOURCE_DIR}/media/decoder/audio/a_decoder.cpp
         #Render
         ${CMAKE_SOURCE_DIR}/media/render/video/video_render.h
         ${CMAKE_SOURCE_DIR}/media/render/video/native/native_render.h
         ${CMAKE_SOURCE_DIR}/media/render/video/native/native_render.cpp
+        ${CMAKE_SOURCE_DIR}/media/render/audio/a_render.h
+        ${CMAKE_SOURCE_DIR}/media/render/audio/opensl_render.h
+        ${CMAKE_SOURCE_DIR}/media/render/audio/opensl_render.cpp
         ${CMAKE_SOURCE_DIR}/media/one_frame.h
         #Player
         ${CMAKE_SOURCE_DIR}/media/player.h
