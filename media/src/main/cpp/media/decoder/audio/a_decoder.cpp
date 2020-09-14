@@ -46,10 +46,10 @@ void AudioDecoder::InitSwr() {
 
 void AudioDecoder::InitOutBuffer() {
     // 重采样后一个通道采样数
-    m_dest_nb_sample = (int)av_rescale_rnd(ACC_NB_SAMPLES, GetSampleRate(codec_cxt()->sample_rate),
-                                           codec_cxt()->sample_rate, AV_ROUND_UP);
+    m_dest_nb_sample = (int) av_rescale_rnd(ACC_NB_SAMPLES, GetSampleRate(codec_cxt()->sample_rate),
+                                            codec_cxt()->sample_rate, AV_ROUND_UP);
     // 重采样后一帧数据的大小
-    m_dest_data_size = (size_t)av_samples_get_buffer_size(
+    m_dest_data_size = (size_t) av_samples_get_buffer_size(
             NULL, AUDIO_DEST_CHANNEL_COUNTS,
             m_dest_nb_sample, GetSampleFmt(), 1);
 
@@ -69,7 +69,7 @@ void AudioDecoder::ReleaseOutBuffer() {
 
 void AudioDecoder::Render(AVFrame *frame) {
     // 转换，返回每个通道的样本数
-    int ret = swr_convert(m_swr, m_out_buffer, m_dest_data_size/2,
+    int ret = swr_convert(m_swr, m_out_buffer, m_dest_data_size / 2,
                           (const uint8_t **) frame->data, frame->nb_samples);
     if (ret > 0) {
         m_render->Render(m_out_buffer[0], (size_t) m_dest_data_size);

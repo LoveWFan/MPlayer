@@ -55,6 +55,5 @@ dependencies {
     implementation 'com.google.android.exoplayer:exoplayer-ui:2.11.5'
     annotationProcessor dependenciesConfig.butterknifeannotation
     implementation project(path: ':labase')
-    implementation project(path: ':file')
     implementation project(path: ':media')
 }

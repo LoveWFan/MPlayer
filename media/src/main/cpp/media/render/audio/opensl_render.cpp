@@ -25,6 +25,15 @@ bool OpenSLRender::CreateOutputMixer() {
 
     result = (*m_output_mix_obj)->Realize(m_output_mix_obj, SL_BOOLEAN_FALSE);
     if (CheckError(result, "Output Mix Realize")) return false;
+
+    result = (*m_output_mix_obj)->GetInterface(m_output_mix_obj, SL_IID_ENVIRONMENTALREVERB,
+                                               &m_output_mix_evn_reverb);
+    if (CheckError(result, "Output Mix Env Reverb")) return false;
+
+    if (result == SL_RESULT_SUCCESS) {
+        (*m_output_mix_evn_reverb)->SetEnvironmentalReverbProperties(m_output_mix_evn_reverb,
+                                                                     &m_reverb_settings);
+    }
     return true;
 }
 
