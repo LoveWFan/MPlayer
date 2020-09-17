@@ -1,4 +1,4 @@
-package com.poney.mplayer.biz.ui.home.video;
+package com.poney.mplayer.biz.ui.player.video;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -22,7 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.poney.media.MediaDemoActivity;
 import com.poney.mplayer.R;
-import com.poney.mplayer.biz.ui.home.model.VideoBean;
+import com.poney.mplayer.biz.ui.player.model.VideoBean;
 
 import java.io.File;
 import java.util.List;

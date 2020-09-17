@@ -1,4 +1,4 @@
-package com.poney.mplayer.biz.ui.home;
+package com.poney.mplayer.biz.ui.player;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -20,8 +20,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.poney.mplayer.R;
-import com.poney.mplayer.biz.ui.home.model.FileBean;
-import com.poney.mplayer.biz.ui.home.video.VideoListActivity;
+import com.poney.mplayer.biz.ui.player.model.FileBean;
+import com.poney.mplayer.biz.ui.player.video.VideoListActivity;
 
 import java.util.List;
 

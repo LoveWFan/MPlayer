@@ -1,4 +1,4 @@
-package com.poney.mplayer.biz.ui.music;
+package com.poney.mplayer.biz.ui.home.camera;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,17 +17,17 @@ import com.poney.media.MediaDemoActivity;
 import com.poney.mplayer.R;
 
 
-public class DashboardFragment extends Fragment {
+public class CameraFragment extends Fragment {
 
-    private DashboardViewModel dashboardViewModel;
+    private CameraViewModel cameraViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        dashboardViewModel =
-                ViewModelProviders.of(this).get(DashboardViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
+        cameraViewModel =
+                ViewModelProviders.of(this).get(CameraViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_camera, container, false);
         final TextView textView = root.findViewById(R.id.text_dashboard);
-        dashboardViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        cameraViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

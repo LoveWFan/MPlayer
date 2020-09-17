@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".biz.ui.notifications.NotificationsFragment">
+    tools:context=".biz.ui.home.video.VideoFragment">
 
     <TextView
         android:id="@+id/text_notifications"

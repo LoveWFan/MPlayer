@@ -1,13 +1,12 @@
-package com.poney.mplayer.biz.ui.home;
+package com.poney.mplayer.biz.ui.player;
 
 import android.os.Environment;
 
 import androidx.fragment.app.FragmentActivity;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.poney.mplayer.biz.ui.home.model.FileBean;
+import com.poney.mplayer.biz.ui.player.model.FileBean;
 import com.poney.mplayer.common.util.FileUtils;
 
 import java.io.File;

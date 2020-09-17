@@ -14,8 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".biz.ui.home.video.VideoActivity" />
-        <activity android:name=".biz.ui.home.video.VideoListActivity" />
+        <activity android:name=".biz.ui.player.video.VideoActivity" />
+        <activity android:name=".biz.ui.player.video.VideoListActivity" />
         <activity android:name=".biz.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

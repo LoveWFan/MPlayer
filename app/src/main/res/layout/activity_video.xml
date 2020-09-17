@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".biz.ui.home.video.VideoActivity">
+    tools:context=".biz.ui.player.video.VideoActivity">
 
     <com.google.android.exoplayer2.ui.PlayerView
         android:id="@+id/exo_play"

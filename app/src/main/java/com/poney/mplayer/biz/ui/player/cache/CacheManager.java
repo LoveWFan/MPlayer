@@ -1,4 +1,4 @@
-package com.poney.mplayer.biz.ui.home.cache;
+package com.poney.mplayer.biz.ui.player.cache;
 
 import android.content.Context;
 import android.graphics.Bitmap;

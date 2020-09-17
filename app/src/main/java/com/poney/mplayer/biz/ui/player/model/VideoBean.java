@@ -1,4 +1,4 @@
-package com.poney.mplayer.biz.ui.home.model;
+package com.poney.mplayer.biz.ui.player.model;
 
 import java.io.Serializable;
 
