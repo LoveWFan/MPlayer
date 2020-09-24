@@ -7,8 +7,8 @@
 
 
 #include "decoder/video/v_decoder.h"
-#include "render/audio/a_render.h"
 #include "decoder/audio/a_decoder.h"
+#include "render/audio/audio_render.h"
 
 class Player {
 private:

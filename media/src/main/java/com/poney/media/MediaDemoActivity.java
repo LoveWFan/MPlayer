@@ -35,8 +35,6 @@ public class MediaDemoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_media_demo);
         // Example of a call to a native method
-        TextView tv = findViewById(R.id.tv);
-        tv.setText(ffmpegInfo());
         initSfv();
     }
 
@@ -61,7 +59,9 @@ public class MediaDemoActivity extends AppCompatActivity {
 
             @Override
             public void surfaceDestroyed(SurfaceHolder holder) {
-
+                if (player != null) {
+                    pause(player);
+                }
             }
         });
     }
@@ -70,8 +70,6 @@ public class MediaDemoActivity extends AppCompatActivity {
      * A native method that is implemented by the 'native-lib' native library,
      * which is packaged with this application.
      */
-    public native String ffmpegInfo();
-
     public native int createPlayer(String path, Surface surface);
 
     public native void play(int player);

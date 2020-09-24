@@ -1,9 +1,11 @@
 //
-// Created by feibiao.ma on 2020/9/1.
+// OpenSL ES音频渲染器
+// Author: Chen Xiaoping
+// Create Date: 2019-08-02
 //
 
-#ifndef MPLAYER_OPENSL_RENDER_H
-#define MPLAYER_OPENSL_RENDER_H
+#ifndef LEARNVIDEO_AUDIOPLAYER_H
+#define LEARNVIDEO_AUDIOPLAYER_H
 
 #include <SLES/OpenSLES.h>
 #include <SLES/OpenSLES_Android.h>
@@ -11,8 +13,7 @@
 #include <string>
 #include <pthread.h>
 #include "../../../utils/logger.h"
-
-#include "a_render.h"
+#include "audio_render.h"
 
 extern "C" {
 #include <libavutil/mem.h>
@@ -20,8 +21,8 @@ extern "C" {
 
 static const char *TAG = "OpenSLRender";
 
+class OpenSLRender: public AudioRender {
 
-class OpenSLRender : public AudioRender {
 private:
 
     class PcmData {
@@ -43,8 +44,9 @@ private:
         bool used = false;
     };
 
+    const SLuint32 SL_QUEUE_BUFFER_COUNT = 2;
 
-    //引擎接口
+    // 引擎接口
     SLObjectItf m_engine_obj = NULL;
     SLEngineItf m_engine = NULL;
 
@@ -53,15 +55,13 @@ private:
     SLEnvironmentalReverbItf m_output_mix_evn_reverb = NULL;
     SLEnvironmentalReverbSettings m_reverb_settings = SL_I3DL2_ENVIRONMENT_PRESET_DEFAULT;
 
-    //pcm 播放器
+    //pcm播放器
     SLObjectItf m_pcm_player_obj = NULL;
     SLPlayItf m_pcm_player = NULL;
     SLVolumeItf m_pcm_player_volume = NULL;
 
-    //缓冲队列接口
+    //缓冲器队列接口
     SLAndroidSimpleBufferQueueItf m_pcm_buffer;
-    const SLuint32 SL_QUEUE_BUFFER_COUNT = 2;
-
 
     std::queue<PcmData *> m_data_queue;
 
@@ -69,29 +69,16 @@ private:
     pthread_mutex_t m_cache_mutex = PTHREAD_MUTEX_INITIALIZER;
     pthread_cond_t m_cache_cond = PTHREAD_COND_INITIALIZER;
 
-
-    // 创建引擎
     bool CreateEngine();
-
-    // 创建混音器
     bool CreateOutputMixer();
-
-    // 创建播放器
-    bool CreatePlayer();
-
-    // 开始播放渲染
+    bool ConfigPlayer();
     void StartRender();
-
-    // 音频数据压入缓冲队列
     void BlockEnqueue();
 
-    // 检查是否发生错误
     bool CheckError(SLresult result, std::string hint);
 
     void static sRenderPcm(OpenSLRender *that);
-    // 数据填充通知接口，后续会介绍这个方法的作用
     void static sReadPcmBufferCbFun(SLAndroidSimpleBufferQueueItf bufferQueueItf, void *context);
-
 
     void WaitForCache() {
         pthread_mutex_lock(&m_cache_mutex);
@@ -107,15 +94,12 @@ private:
 
 public:
     OpenSLRender();
-
     ~OpenSLRender();
 
     void InitRender() override;
-
     void Render(uint8_t *pcm, int size) override;
-
     void ReleaseRender() override;
 };
 
 
-#endif //MPLAYER_OPENSL_RENDER_H
+#endif //LEARNVIDEO_AUDIOPLAYER_H

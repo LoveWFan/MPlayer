@@ -29,6 +29,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import ma.bay.com.labase.common.cview.rv.adapter.BaseRVAdapter;
 
 public class VideoListActivity extends AppCompatActivity implements LifecycleOwner {
@@ -78,7 +79,7 @@ public class VideoListActivity extends AppCompatActivity implements LifecycleOwn
         if (getVideoItemSuffix(itemData.path).equals("avi")) {
             MediaDemoActivity.intentTo(VideoListActivity.this, itemData.path);
         } else {
-            VideoActivity.intentTo(VideoListActivity.this, path, position);
+            VideoActivity.intentTo(VideoListActivity.this, mAdapter.getDataList(), position);
         }
 
     }
@@ -103,6 +104,11 @@ public class VideoListActivity extends AppCompatActivity implements LifecycleOwn
             }
         });
         videoViewModel.getVideoData(new File(path));
+    }
+
+    @OnClick(R.id.iv_play_all)
+    public void onViewClicked() {
+        VideoActivity.intentTo(VideoListActivity.this,  mAdapter.getDataList());
     }
 
     private static class VideoListAdapter extends BaseRVAdapter<VideoBeanViewHolder, BaseRVAdapter.Listener, VideoBean> {

@@ -8,7 +8,7 @@
 
 #include "../base_decoder.h"
 #include "../../../utils/const.h"
-#include "../../render/audio/a_render.h"
+#include "../../render/audio/audio_render.h"
 
 extern "C" {
 #include <libswresample/swresample.h>

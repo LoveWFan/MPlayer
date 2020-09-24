@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,8 +21,11 @@ import com.google.android.exoplayer2.upstream.DataSource;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 import com.poney.mplayer.R;
+import com.poney.mplayer.biz.ui.player.model.VideoBean;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,19 +37,22 @@ public class VideoActivity extends AppCompatActivity {
     @BindView(R.id.tv_name)
     TextView tvName;
     private SimpleExoPlayer simpleExoPlayer;
-    private String rootPath;
+    private List<VideoBean> videoBeanList;
     private int curPosition;
 
-    private static Intent newIntent(Context context, String rootPath, int position) {
+    private static Intent newIntent(Context context, List<VideoBean> videoBeanList, int position) {
         Intent intent = new Intent(context, VideoActivity.class);
-        intent.putExtra("rootPath", rootPath);
+        intent.putParcelableArrayListExtra("videoBeanList", (ArrayList<? extends Parcelable>) videoBeanList);
         intent.putExtra("position", position);
         return intent;
     }
 
+    public static void intentTo(Context context, List<VideoBean> videoBeanList) {
+        intentTo(context, videoBeanList, 0);
+    }
 
-    public static void intentTo(Context context, String rootPath, int position) {
-        context.startActivity(newIntent(context, rootPath, position));
+    public static void intentTo(Context context, List<VideoBean> videoBeanList, int position) {
+        context.startActivity(newIntent(context, videoBeanList, position));
     }
 
     @Override
@@ -54,7 +61,7 @@ public class VideoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_video);
         ButterKnife.bind(this);
 
-        rootPath = getIntent().getStringExtra("rootPath");
+        videoBeanList = getIntent().getParcelableArrayListExtra("videoBeanList");
         curPosition = getIntent().getIntExtra("position", 0);
         simpleExoPlayer = new SimpleExoPlayer.Builder(this).build();
         exoPlay.setPlayer(simpleExoPlayer);
@@ -87,17 +94,18 @@ public class VideoActivity extends AppCompatActivity {
 
             }
         });
-        MediaSource mediaSource = buildMediaSource(getUri(rootPath));
+        MediaSource mediaSource = buildMediaSource(getUri());
         simpleExoPlayer.prepare(mediaSource);
         simpleExoPlayer.setPlayWhenReady(true);
         simpleExoPlayer.seekTo(curPosition, C.TIME_UNSET);
     }
 
-    private Uri[] getUri(String rootPath) {
-        File[] files = new File(rootPath).listFiles();
-        Uri[] uris = new Uri[files.length];
-        for (int i = 0; i < files.length; i++) {
-            uris[i] = Uri.fromFile(files[i]);
+    private Uri[] getUri() {
+        Uri[] uris = new Uri[videoBeanList.size()];
+        int i = 0;
+        for (VideoBean videoBean : videoBeanList) {
+            uris[i] = Uri.fromFile(new File(videoBean.path));
+            i++;
         }
         return uris;
     }

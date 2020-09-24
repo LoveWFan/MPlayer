@@ -98,7 +98,7 @@ add_library( # Sets the name of the library.
         ${CMAKE_SOURCE_DIR}/media/render/video/video_render.h
         ${CMAKE_SOURCE_DIR}/media/render/video/native/native_render.h
         ${CMAKE_SOURCE_DIR}/media/render/video/native/native_render.cpp
-        ${CMAKE_SOURCE_DIR}/media/render/audio/a_render.h
+        ${CMAKE_SOURCE_DIR}/media/render/audio/audio_render.h
         ${CMAKE_SOURCE_DIR}/media/render/audio/opensl_render.h
         ${CMAKE_SOURCE_DIR}/media/render/audio/opensl_render.cpp
         ${CMAKE_SOURCE_DIR}/media/one_frame.h
