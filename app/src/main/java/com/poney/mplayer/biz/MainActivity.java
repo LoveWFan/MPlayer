@@ -14,6 +14,8 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import io.reactivex.disposables.Disposable;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,12 +23,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        requestPermissions();
+    }
+
+    private void requestPermissions() {
         RxPermissions rxPermissions = new RxPermissions(this);
-        rxPermissions.request(
+        Disposable disposable = rxPermissions.request(
                 Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.READ_EXTERNAL_STORAGE)
                 .subscribe(permission -> {
-                    if (permission.booleanValue()) {
+                    if (permission) {
                         initView();
                     } else {
                         Toast.makeText(MainActivity.this, "请授予相关权限", Toast.LENGTH_SHORT).show();

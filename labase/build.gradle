@@ -29,7 +29,7 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation dependenciesConfig.appcompatV7
     implementation dependenciesConfig.design
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
     implementation dependenciesConfig.glide
     implementation dependenciesConfig.commonsLang
     implementation dependenciesConfig.retrofit2Retrofit

@@ -1,3 +1,4 @@
+include ':gpuimage'
 include ':media'
 include ':labase'
 include ':app'
