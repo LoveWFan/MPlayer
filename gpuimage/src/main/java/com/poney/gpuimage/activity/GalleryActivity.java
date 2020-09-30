@@ -78,50 +78,68 @@ public class GalleryActivity extends Activity implements View.OnClickListener {
     private void initAction() {
         btnCameraAdjust.setOnClickListener(this);
         btnCameraFilter.setOnClickListener(this);
-        fragmentRadioContrast.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    seekBar.setVisibility(View.VISIBLE);
-                    GPUImageFilterGroup gpuImageFilterGroup = new GPUImageFilterGroup();
-                    gpuImageFilterGroup.addFilter(gpuImageView.getFilter());
-                    GPUImageFilter imageAdjustFilterBy = FilterTypeHelper.createImageAdjustFilterBy(MagicFilterType.CONTRAST);
-                    gpuImageFilterGroup.addFilter(imageAdjustFilterBy);
-                    gpuImageView.setFilter(gpuImageFilterGroup);
-                    gpuImageView.requestRender();
-                    if (filterAdjuster == null)
-                        filterAdjuster = new FilterAdjuster(imageAdjustFilterBy);
-                    seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-                        @Override
-                        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                            if (filterAdjuster.canAdjust()) {
-                                Log.w(GalleryActivity.class.getSimpleName(), "onProgressChanged");
-                                filterAdjuster.adjust(progress);
-                            }
-                            gpuImageView.requestRender();
-                        }
 
-                        @Override
-                        public void onStartTrackingTouch(SeekBar seekBar) {
-
-                        }
-
-                        @Override
-                        public void onStopTrackingTouch(SeekBar seekBar) {
-
-                        }
-                    });
-                }
-            }
-        });
         fragmentAdjustRadiogroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
+                seekBar.setProgress(0);
                 if (checkedId == -1) {
                     seekBar.setVisibility(View.GONE);
-                    seekBar.setProgress(0);
                     filterAdjuster = null;
+                    return;
                 }
+
+                seekBar.setVisibility(View.VISIBLE);
+                GPUImageFilter originalFilter = gpuImageView.getFilter();
+                GPUImageFilterGroup gpuImageFilterGroup = null;
+                if (originalFilter instanceof GPUImageFilterGroup) {
+                    gpuImageFilterGroup = (GPUImageFilterGroup) originalFilter;
+                } else {
+                    gpuImageFilterGroup = new GPUImageFilterGroup();
+                    gpuImageFilterGroup.addFilter(originalFilter);
+                }
+                GPUImageFilter imageAdjustFilterBy = null;
+                //image adjust filter
+                if (checkedId == R.id.fragment_radio_contrast) {
+                    imageAdjustFilterBy = FilterTypeHelper.createImageAdjustFilterBy(MagicFilterType.CONTRAST);
+                } else if (checkedId == R.id.fragment_radio_saturation) {
+                    imageAdjustFilterBy = FilterTypeHelper.createImageAdjustFilterBy(MagicFilterType.SATURATION);
+                } else if (checkedId == R.id.fragment_radio_exposure) {
+                    imageAdjustFilterBy = FilterTypeHelper.createImageAdjustFilterBy(MagicFilterType.EXPOSURE);
+                } else if (checkedId == R.id.fragment_radio_sharpness) {
+                    imageAdjustFilterBy = FilterTypeHelper.createImageAdjustFilterBy(MagicFilterType.SHARPEN);
+                } else if (checkedId == R.id.fragment_radio_bright) {
+                    imageAdjustFilterBy = FilterTypeHelper.createImageAdjustFilterBy(MagicFilterType.BRIGHTNESS);
+                } else if (checkedId == R.id.fragment_radio_hue) {
+                    imageAdjustFilterBy = FilterTypeHelper.createImageAdjustFilterBy(MagicFilterType.HUE);
+                }
+
+
+                gpuImageFilterGroup.addFilter(imageAdjustFilterBy);
+                if (filterAdjuster == null)
+                    filterAdjuster = new FilterAdjuster(imageAdjustFilterBy);
+                gpuImageView.setFilter(gpuImageFilterGroup);
+                gpuImageView.requestRender();
+                seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                        if (filterAdjuster.canAdjust()) {
+                            Log.w(GalleryActivity.class.getSimpleName(), "onProgressChanged");
+                            filterAdjuster.adjust(progress);
+                        }
+                        gpuImageView.requestRender();
+                    }
+
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
+
+                    }
+
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
+
+                    }
+                });
 
             }
         });

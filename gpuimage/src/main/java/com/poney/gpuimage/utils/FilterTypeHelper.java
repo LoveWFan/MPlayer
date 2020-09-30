@@ -3,12 +3,14 @@ package com.poney.gpuimage.utils;
 
 import com.poney.gpuimage.R;
 import com.poney.gpuimage.filter.blend.MagicFairytaleFilter;
-import com.poney.gpuimage.filter.edit.GPUImageBrightnessFilter;
-import com.poney.gpuimage.filter.edit.GPUImageContrastFilter;
-import com.poney.gpuimage.filter.edit.GPUImageSharpenFilter;
+import com.poney.gpuimage.filter.imageadjust.GPUImageBrightnessFilter;
+import com.poney.gpuimage.filter.imageadjust.GPUImageContrastFilter;
+import com.poney.gpuimage.filter.imageadjust.GPUImageExposureFilter;
+import com.poney.gpuimage.filter.imageadjust.GPUImageHueFilter;
+import com.poney.gpuimage.filter.imageadjust.GPUImageSaturationFilter;
+import com.poney.gpuimage.filter.imageadjust.GPUImageSharpenFilter;
 import com.poney.gpuimage.filter.base.GPUImageFilter;
 import com.poney.gpuimage.filter.base.MagicFilterType;
-import com.poney.gpuimage.filter.group.GPUImageFilterGroup;
 
 public class FilterTypeHelper {
 
@@ -281,6 +283,12 @@ public class FilterTypeHelper {
                 return new GPUImageBrightnessFilter();
             case SHARPEN:
                 return new GPUImageSharpenFilter();
+            case SATURATION:
+                return new GPUImageSaturationFilter();
+            case HUE:
+                return new GPUImageHueFilter();
+            case EXPOSURE:
+                return new GPUImageExposureFilter();
         }
         return new GPUImageFilter();
     }

@@ -1,14 +1,15 @@
 package com.poney.gpuimage.filter.base
 
-import com.poney.gpuimage.filter.edit.GPUImageBrightnessFilter
-import com.poney.gpuimage.filter.edit.GPUImageContrastFilter
-import com.poney.gpuimage.filter.edit.GPUImageSharpenFilter
+import com.poney.gpuimage.filter.imageadjust.*;
 
 class FilterAdjuster(filter: GPUImageFilter?) {
     private val adjuster: Adjuster<out GPUImageAdjustFilter>? = when (filter) {
         is GPUImageContrastFilter -> ContrastAdjuster(filter)
         is GPUImageBrightnessFilter -> BrightnessAdjuster(filter)
         is GPUImageSharpenFilter -> SharpnessAdjuster(filter)
+        is GPUImageSaturationFilter -> SaturationAdjuster(filter)
+        is GPUImageHueFilter -> HueAdjuster(filter)
+        is GPUImageExposureFilter -> ExposureAdjuster(filter)
         else -> null
     }
 
@@ -52,4 +53,24 @@ class FilterAdjuster(filter: GPUImageFilter?) {
         }
     }
 
+    private inner class SaturationAdjuster(filter: GPUImageSaturationFilter) :
+            Adjuster<GPUImageSaturationFilter>(filter) {
+        override fun adjust(percentage: Int) {
+            filter.setSaturation(range(percentage, 0.0f, 2.0f))
+        }
+    }
+
+    private inner class HueAdjuster(filter: GPUImageHueFilter) :
+            Adjuster<GPUImageHueFilter>(filter) {
+        override fun adjust(percentage: Int) {
+            filter.setHue(range(percentage, 0.0f, 360.0f))
+        }
+    }
+
+    private inner class ExposureAdjuster(filter: GPUImageExposureFilter) :
+            Adjuster<GPUImageExposureFilter>(filter) {
+        override fun adjust(percentage: Int) {
+            filter.setExposure(range(percentage, -10.0f, 10.0f))
+        }
+    }
 }
