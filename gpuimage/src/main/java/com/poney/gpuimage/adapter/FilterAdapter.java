@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.poney.gpuimage.R;
-import com.poney.gpuimage.filter.base.MagicFilterType;
+import com.poney.gpuimage.filter.base.GPUImageFilterType;
 import com.poney.gpuimage.utils.FilterTypeHelper;
 
 
@@ -20,11 +20,11 @@ import com.poney.gpuimage.utils.FilterTypeHelper;
  */
 public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.FilterHolder>{
     
-    private MagicFilterType[] filters;
+    private GPUImageFilterType[] filters;
     private Context context;
     private int selected = 0;
 
-    public FilterAdapter(Context context, MagicFilterType[] filters) {
+    public FilterAdapter(Context context, GPUImageFilterType[] filters) {
         this.filters = filters;
         this.context = context;
     }
@@ -95,7 +95,7 @@ public class FilterAdapter extends RecyclerView.Adapter<FilterAdapter.FilterHold
     }
 
     public interface onFilterChangeListener{
-        void onFilterChanged(MagicFilterType filterType);
+        void onFilterChanged(GPUImageFilterType filterType);
     }
 
     private onFilterChangeListener onFilterChangeListener;

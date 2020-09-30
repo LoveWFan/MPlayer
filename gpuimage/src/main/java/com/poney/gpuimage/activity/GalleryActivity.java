@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.CompoundButton;
-import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -21,10 +19,9 @@ import com.poney.gpuimage.R2;
 import com.poney.gpuimage.adapter.FilterAdapter;
 import com.poney.gpuimage.filter.base.FilterAdjuster;
 import com.poney.gpuimage.filter.base.FilterTypeList;
-import com.poney.gpuimage.filter.base.GPUImageAdjustFilter;
 import com.poney.gpuimage.filter.base.GPUImageFilter;
-import com.poney.gpuimage.filter.base.MagicFilterType;
-import com.poney.gpuimage.filter.base.MagicParams;
+import com.poney.gpuimage.filter.base.GPUImageFilterType;
+import com.poney.gpuimage.filter.base.GPUImageParams;
 import com.poney.gpuimage.filter.group.GPUImageFilterGroup;
 import com.poney.gpuimage.utils.FilterTypeHelper;
 import com.poney.gpuimage.view.GPUImageView;
@@ -69,7 +66,7 @@ public class GalleryActivity extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
         ButterKnife.bind(this);
-        MagicParams.init(this);
+        GPUImageParams.init(this);
         initAction();
         initFilterList();
         startPhotoPicker();
@@ -101,17 +98,17 @@ public class GalleryActivity extends Activity implements View.OnClickListener {
                 GPUImageFilter imageAdjustFilterBy = null;
                 //image adjust filter
                 if (checkedId == R.id.fragment_radio_contrast) {
-                    imageAdjustFilterBy = FilterTypeHelper.createImageAdjustFilterBy(MagicFilterType.CONTRAST);
+                    imageAdjustFilterBy = FilterTypeHelper.createImageAdjustFilterBy(GPUImageFilterType.CONTRAST);
                 } else if (checkedId == R.id.fragment_radio_saturation) {
-                    imageAdjustFilterBy = FilterTypeHelper.createImageAdjustFilterBy(MagicFilterType.SATURATION);
+                    imageAdjustFilterBy = FilterTypeHelper.createImageAdjustFilterBy(GPUImageFilterType.SATURATION);
                 } else if (checkedId == R.id.fragment_radio_exposure) {
-                    imageAdjustFilterBy = FilterTypeHelper.createImageAdjustFilterBy(MagicFilterType.EXPOSURE);
+                    imageAdjustFilterBy = FilterTypeHelper.createImageAdjustFilterBy(GPUImageFilterType.EXPOSURE);
                 } else if (checkedId == R.id.fragment_radio_sharpness) {
-                    imageAdjustFilterBy = FilterTypeHelper.createImageAdjustFilterBy(MagicFilterType.SHARPEN);
+                    imageAdjustFilterBy = FilterTypeHelper.createImageAdjustFilterBy(GPUImageFilterType.SHARPEN);
                 } else if (checkedId == R.id.fragment_radio_bright) {
-                    imageAdjustFilterBy = FilterTypeHelper.createImageAdjustFilterBy(MagicFilterType.BRIGHTNESS);
+                    imageAdjustFilterBy = FilterTypeHelper.createImageAdjustFilterBy(GPUImageFilterType.BRIGHTNESS);
                 } else if (checkedId == R.id.fragment_radio_hue) {
-                    imageAdjustFilterBy = FilterTypeHelper.createImageAdjustFilterBy(MagicFilterType.HUE);
+                    imageAdjustFilterBy = FilterTypeHelper.createImageAdjustFilterBy(GPUImageFilterType.HUE);
                 }
 
 
@@ -150,7 +147,7 @@ public class GalleryActivity extends Activity implements View.OnClickListener {
         FilterAdapter filterAdapter = new FilterAdapter(this, FilterTypeList.TYPES);
         filterAdapter.setOnFilterChangeListener(new FilterAdapter.onFilterChangeListener() {
             @Override
-            public void onFilterChanged(MagicFilterType filterType) {
+            public void onFilterChanged(GPUImageFilterType filterType) {
                 switchFilterTo(FilterTypeHelper.createGroupFilterBy(filterType));
             }
         });

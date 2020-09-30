@@ -2,7 +2,8 @@ package com.poney.gpuimage.utils;
 
 
 import com.poney.gpuimage.R;
-import com.poney.gpuimage.filter.blend.MagicFairytaleFilter;
+import com.poney.gpuimage.filter.blend.GPUImageFairytaleFilter;
+import com.poney.gpuimage.filter.blend.GPUImageSunRiseFilter;
 import com.poney.gpuimage.filter.imageadjust.GPUImageBrightnessFilter;
 import com.poney.gpuimage.filter.imageadjust.GPUImageContrastFilter;
 import com.poney.gpuimage.filter.imageadjust.GPUImageExposureFilter;
@@ -10,11 +11,11 @@ import com.poney.gpuimage.filter.imageadjust.GPUImageHueFilter;
 import com.poney.gpuimage.filter.imageadjust.GPUImageSaturationFilter;
 import com.poney.gpuimage.filter.imageadjust.GPUImageSharpenFilter;
 import com.poney.gpuimage.filter.base.GPUImageFilter;
-import com.poney.gpuimage.filter.base.MagicFilterType;
+import com.poney.gpuimage.filter.base.GPUImageFilterType;
 
 public class FilterTypeHelper {
 
-    public static int FilterType2Color(MagicFilterType filterType) {
+    public static int FilterType2Color(GPUImageFilterType filterType) {
         switch (filterType) {
             case NONE:
                 return R.color.filter_color_grey_light;
@@ -72,7 +73,7 @@ public class FilterTypeHelper {
         }
     }
 
-    public static int FilterType2Thumb(MagicFilterType filterType) {
+    public static int FilterType2Thumb(GPUImageFilterType filterType) {
         switch (filterType) {
             case NONE:
                 return R.drawable.filter_thumb_original;
@@ -163,7 +164,7 @@ public class FilterTypeHelper {
         }
     }
 
-    public static int FilterType2Name(MagicFilterType filterType) {
+    public static int FilterType2Name(GPUImageFilterType filterType) {
         switch (filterType) {
             case NONE:
                 return R.string.filter_none;
@@ -266,16 +267,18 @@ public class FilterTypeHelper {
         }
     }
 
-    public static GPUImageFilter createGroupFilterBy(MagicFilterType filterType) {
+    public static GPUImageFilter createGroupFilterBy(GPUImageFilterType filterType) {
         switch (filterType) {
             case FAIRYTALE:
-                return new MagicFairytaleFilter();
+                return new GPUImageFairytaleFilter();
+            case SUNRISE:
+                return new GPUImageSunRiseFilter();
             default:
                 return new GPUImageFilter();
         }
     }
 
-    public static GPUImageFilter createImageAdjustFilterBy(MagicFilterType filterType) {
+    public static GPUImageFilter createImageAdjustFilterBy(GPUImageFilterType filterType) {
         switch (filterType) {
             case CONTRAST:
                 return new GPUImageContrastFilter();

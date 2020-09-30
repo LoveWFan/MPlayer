@@ -3,7 +3,7 @@ package com.poney.gpuimage.filter.base;
 /**
  * Created by why8222 on 2016/2/25.
  */
-public enum MagicFilterType {
+public enum GPUImageFilterType {
     NONE,
     //image adjust
     CONTRAST,

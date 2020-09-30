@@ -1,11 +1,13 @@
-package com.poney.gpuimage.filter.base;
+package com.poney.gpuimage.filter.blend;
 
 import android.opengl.GLES20;
 
+import com.poney.gpuimage.filter.base.GPUImageBlendFilter;
+import com.poney.gpuimage.filter.base.GPUImageParams;
 import com.poney.gpuimage.utils.OpenGlUtils;
 
 
-public class MagicLookupFilter extends GPUImageFilter {
+public class GPUImageLookupFilter extends GPUImageBlendFilter {
 
     public static final String LOOKUP_FRAGMENT_SHADER = "" +
             "varying highp vec2 textureCoordinate;\n" +
@@ -44,7 +46,7 @@ public class MagicLookupFilter extends GPUImageFilter {
 
     protected String table;
 
-    public MagicLookupFilter(String table) {
+    public GPUImageLookupFilter(String table) {
         super(NO_FILTER_VERTEX_SHADER, LOOKUP_FRAGMENT_SHADER);
         this.table = table;
     }
@@ -61,7 +63,7 @@ public class MagicLookupFilter extends GPUImageFilter {
         super.onInitialized();
         runOnDraw(new Runnable() {
             public void run() {
-                mLookupSourceTexture = OpenGlUtils.loadTexture(MagicParams.sContext, table, OpenGlUtils.NO_TEXTURE);
+                mLookupSourceTexture = OpenGlUtils.loadTexture(GPUImageParams.sContext, table, OpenGlUtils.NO_TEXTURE);
             }
         });
     }
