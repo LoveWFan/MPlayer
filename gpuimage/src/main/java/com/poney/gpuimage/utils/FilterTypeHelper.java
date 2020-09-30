@@ -4,12 +4,12 @@ package com.poney.gpuimage.utils;
 import com.poney.gpuimage.R;
 import com.poney.gpuimage.filter.blend.GPUImageFairytaleFilter;
 import com.poney.gpuimage.filter.blend.GPUImageSunRiseFilter;
-import com.poney.gpuimage.filter.imageadjust.GPUImageBrightnessFilter;
-import com.poney.gpuimage.filter.imageadjust.GPUImageContrastFilter;
-import com.poney.gpuimage.filter.imageadjust.GPUImageExposureFilter;
-import com.poney.gpuimage.filter.imageadjust.GPUImageHueFilter;
-import com.poney.gpuimage.filter.imageadjust.GPUImageSaturationFilter;
-import com.poney.gpuimage.filter.imageadjust.GPUImageSharpenFilter;
+import com.poney.gpuimage.filter.adjust.common.GPUImageBrightnessFilter;
+import com.poney.gpuimage.filter.adjust.common.GPUImageContrastFilter;
+import com.poney.gpuimage.filter.adjust.common.GPUImageExposureFilter;
+import com.poney.gpuimage.filter.adjust.common.GPUImageHueFilter;
+import com.poney.gpuimage.filter.adjust.common.GPUImageSaturationFilter;
+import com.poney.gpuimage.filter.adjust.common.GPUImageSharpenFilter;
 import com.poney.gpuimage.filter.base.GPUImageFilter;
 import com.poney.gpuimage.filter.base.GPUImageFilterType;
 

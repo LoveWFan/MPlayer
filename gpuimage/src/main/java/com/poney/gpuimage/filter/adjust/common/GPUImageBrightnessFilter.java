@@ -1,4 +1,4 @@
-package com.poney.gpuimage.filter.imageadjust;
+package com.poney.gpuimage.filter.adjust.common;
 
 import android.opengl.GLES20;
 

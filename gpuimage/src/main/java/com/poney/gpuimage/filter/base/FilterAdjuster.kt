@@ -1,6 +1,6 @@
 package com.poney.gpuimage.filter.base
 
-import com.poney.gpuimage.filter.imageadjust.*;
+import com.poney.gpuimage.filter.adjust.common.*
 
 class FilterAdjuster(filter: GPUImageFilter?) {
     private val adjuster: Adjuster<out GPUImageAdjustFilter>? = when (filter) {
