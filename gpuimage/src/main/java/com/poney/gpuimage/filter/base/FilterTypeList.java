@@ -3,15 +3,6 @@ package com.poney.gpuimage.filter.base;
 public class FilterTypeList {
     public static final MagicFilterType[] TYPES = new MagicFilterType[]{
             MagicFilterType.NONE,
-            //image adjust
-            MagicFilterType.CONTRAST,
-            MagicFilterType.BRIGHTNESS,
-            MagicFilterType.EXPOSURE,
-            MagicFilterType.HUE,
-            MagicFilterType.SATURATION,
-            MagicFilterType.SHARPEN,
-
-
             MagicFilterType.FAIRYTALE,
             MagicFilterType.SUNRISE,
             MagicFilterType.SUNSET,

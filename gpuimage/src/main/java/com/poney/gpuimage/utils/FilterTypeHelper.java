@@ -2,7 +2,13 @@ package com.poney.gpuimage.utils;
 
 
 import com.poney.gpuimage.R;
+import com.poney.gpuimage.filter.blend.MagicFairytaleFilter;
+import com.poney.gpuimage.filter.edit.GPUImageBrightnessFilter;
+import com.poney.gpuimage.filter.edit.GPUImageContrastFilter;
+import com.poney.gpuimage.filter.edit.GPUImageSharpenFilter;
+import com.poney.gpuimage.filter.base.GPUImageFilter;
 import com.poney.gpuimage.filter.base.MagicFilterType;
+import com.poney.gpuimage.filter.group.GPUImageFilterGroup;
 
 public class FilterTypeHelper {
 
@@ -161,16 +167,16 @@ public class FilterTypeHelper {
                 return R.string.filter_none;
             case CONTRAST:
                 return R.string.edit_contrast;
-			case BRIGHTNESS:
-				return R.string.edit_brightness;
-			case EXPOSURE:
-				return R.string.edit_exposure;
-			case HUE:
-				return R.string.edit_hue;
-			case SATURATION:
-				return R.string.edit_saturation;
-			case SHARPEN:
-				return R.string.edit_sharpness;
+            case BRIGHTNESS:
+                return R.string.edit_brightness;
+            case EXPOSURE:
+                return R.string.edit_exposure;
+            case HUE:
+                return R.string.edit_hue;
+            case SATURATION:
+                return R.string.edit_saturation;
+            case SHARPEN:
+                return R.string.edit_sharpness;
             case WHITECAT:
                 return R.string.filter_whitecat;
             case BLACKCAT:
@@ -256,5 +262,26 @@ public class FilterTypeHelper {
             default:
                 return R.string.filter_none;
         }
+    }
+
+    public static GPUImageFilter createGroupFilterBy(MagicFilterType filterType) {
+        switch (filterType) {
+            case FAIRYTALE:
+                return new MagicFairytaleFilter();
+            default:
+                return new GPUImageFilter();
+        }
+    }
+
+    public static GPUImageFilter createImageAdjustFilterBy(MagicFilterType filterType) {
+        switch (filterType) {
+            case CONTRAST:
+                return new GPUImageContrastFilter();
+            case BRIGHTNESS:
+                return new GPUImageBrightnessFilter();
+            case SHARPEN:
+                return new GPUImageSharpenFilter();
+        }
+        return new GPUImageFilter();
     }
 }

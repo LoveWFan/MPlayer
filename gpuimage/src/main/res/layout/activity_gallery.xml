@@ -14,52 +14,38 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center" />
 
-        <SeekBar
-            android:id="@+id/seekBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
-            android:max="100"
-            android:visibility="gone" />
     </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="120.0dip"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:background="@android:color/white"
         android:paddingTop="5dip"
         android:paddingBottom="5dip">
 
         <ImageView
-            android:id="@+id/btn_camera_beauty"
+            android:id="@+id/btn_filter"
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1.0"
             android:scaleType="center"
-            android:src="@drawable/btn_camera_beauty" />
+            android:src="@drawable/ic_image_filter" />
+
 
         <ImageView
-            android:id="@+id/btn_camera_shutter"
-            android:layout_width="0dip"
-            android:layout_height="match_parent"
-            android:layout_weight="1.0"
-            android:src="@drawable/btn_camera_shutter"
-            android:visibility="gone" />
-
-        <ImageView
-            android:id="@+id/btn_camera_filter"
+            android:id="@+id/btn_adjust"
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1.0"
             android:scaleType="center"
-            android:src="@drawable/btn_camera_filter" />
+            android:src="@drawable/ic_image_adjust" />
     </LinearLayout>
 
     <include
         android:id="@+id/layout_filter"
         layout="@layout/filter_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="120dp"
         android:layout_gravity="bottom" />
 </LinearLayout>
