@@ -1,7 +1,5 @@
 //
 // 解码器定义
-// Author: Chen Xiaoping
-// Create Date: 2019-08-10.
 //
 
 #ifndef LEARNVIDEO_I_DECODER_H

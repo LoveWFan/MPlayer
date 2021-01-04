@@ -1,7 +1,5 @@
 //
 // 一个数据（音频/视频）帧数据
-// Author: Chen Xiaoping
-// Create Date: 2019-11-05.
 //
 
 #ifndef LEARNVIDEO_ONE_FRAME_H

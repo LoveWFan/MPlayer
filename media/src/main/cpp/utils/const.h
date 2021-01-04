@@ -1,6 +1,5 @@
 //
 // 编解码常量定义
-// Author: Chen Xiaoping
 //
 
 #ifndef LEARNVIDEO_ENCODE_CONST_H

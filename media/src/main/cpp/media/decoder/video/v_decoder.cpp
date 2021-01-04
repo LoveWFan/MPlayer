@@ -1,7 +1,5 @@
 //
 // 视频解码器
-// Author: Chen Xiaoping
-// Create Date: 2019-08-02
 //
 
 #include "v_decoder.h"

@@ -1,7 +1,5 @@
 //
 // 音视频解码基类
-// Author: Chen Xiaoping
-// Create Date: 2019-08-02
 //
 
 #ifndef LEARNVIDEO_BASEDECODER_H
